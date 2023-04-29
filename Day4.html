@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="Day4.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="image">
+            <img src="1.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="2.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="3.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="4.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="5.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="6.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="7.jpg" alt="">
+        </div>
+        <!-- item image -->
+        <div class="image">
+            <img src="8.jpg" alt="">
+        </div>
+        <!-- item image -->
+
+    </div>
+
+
+    <div class="gallery">
+        <i class="fas fa-times close"></i>
+        <div class="gallery-inner">
+            <img src="1.jpg" alt="">
+        </div>
+        <div class="control prev">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="control next">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
+    </div>
+    <script>
+        var images = document.querySelectorAll('.image img')
+        var prev = document.querySelector('.prev')
+        var next = document.querySelector('.next')
+        var close = document.querySelector('.close')
+        var galleryImg = document.querySelector('.gallery-inner img')
+        var gallery = document.querySelector('.gallery')
+
+        var currentIndex = 0;
+
+        function showGallery() {
+            if (currentIndex == 0) {
+                prev.classList.add('hide')
+            } else {
+                prev.classList.remove('hide')
+            }
+
+            if (currentIndex == images.length - 1) {
+                next.classList.add('hide')
+            } else {
+                next.classList.remove('hide')
+            }
+
+            galleryImg.src = images[currentIndex].src
+            gallery.classList.add('show')
+        }
+
+        images.forEach((item, index) => {
+            item.addEventListener('click', function () {
+                currentIndex = index
+                showGallery()
+            })
+        })
+
+        close.addEventListener('click', function () {
+            gallery.classList.remove('show')
+        })
+
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode == 27) {
+                gallery.classList.remove('show')
+            }
+        })
+
+        next.addEventListener('click', function () {
+            if (currentIndex < images.length - 1) {
+                currentIndex++
+                showGallery()
+            }
+        })
+
+        prev.addEventListener('click', function () {
+            if (currentIndex > 0) {
+                currentIndex--
+                showGallery()
+            }
+        })
+       
+            
+    </script>
+</body>
+
+</html>
